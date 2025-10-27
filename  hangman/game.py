@@ -31,6 +31,9 @@ def is_won(state: dict) -> bool:
 def is_lost(state: dict) -> bool:
     return state["wrong_guesses"] >= state["max_tries"]
 
+def render_display(state: dict) -> str:
+    return "".join(state["display"])
+
 
 
 
