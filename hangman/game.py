@@ -1,5 +1,3 @@
-
-
 def init_state(secret: str, max_tries: int) -> dict:
     display_list = ["_"] * len(secret)
     dic = {"secret" : secret, "display" : display_list, "guesses" : [], "wrong_guesses" : 0, "max_tries" : max_tries}
@@ -8,16 +6,16 @@ def init_state(secret: str, max_tries: int) -> dict:
 def validate_guess(ch: str, guessed: set[str]) -> tuple[bool, str]:
     valid = True
     if len(ch) != 1:
-        return False,"invalid input"
+        return True,"invalid input"
     if ch in guessed:
-        return False,"already guessed,try again"
+        return True,"already guessed,try again"
     else:
-        return True,"check..."
+        return False,"check..."
 
 def apply_guess(state: dict, ch: str) -> bool:
     state["guesses"].append(ch)
     if ch in state["secret"]:
-        for i in range(0, len(state["secret"])-1):
+        for i in range(0, len(state["secret"])):
             if state["secret"][i] == ch:
                 state["display"][i] = ch
         return True
@@ -26,13 +24,10 @@ def apply_guess(state: dict, ch: str) -> bool:
         return False
 
 def is_won(state: dict) -> bool:
-    return state["guesses"] == state["display"]
+    return state["secret"] == state["display"]
 
 def is_lost(state: dict) -> bool:
     return state["wrong_guesses"] >= state["max_tries"]
-
-def render_display(state: dict) -> str:
-    return "".join(state["display"])
 
 def render_summary(state: dict) -> str:
     return "the secret is: " + state["secret"] + "\nThe letters that have been guessed are : " + "".join(state["display"])
