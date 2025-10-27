@@ -3,7 +3,7 @@ import hangman.game
 import hangman.io
 import data.words
 
-def play(words: list[str], max_tries: int = 26) -> None:
+def play(words: list[str], max_tries: int = 6) -> None:
     word = hangman.words.choose_secret_word(words)
     state = hangman.game.init_state(word, max_tries)
     while True:
@@ -29,5 +29,7 @@ def play(words: list[str], max_tries: int = 26) -> None:
 
 def main():
     play(data.words.words)
+
+
 
 main()
