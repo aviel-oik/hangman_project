@@ -12,7 +12,6 @@ def validate_guess(ch: str, guessed: set[str]) -> tuple[bool, str]:
     if ch in guessed:
         return False,"already guessed,try again"
     else:
-# guessed.add(ch)
         return True,"check..."
 
 def apply_guess(state: dict, ch: str) -> bool:
@@ -25,6 +24,9 @@ def apply_guess(state: dict, ch: str) -> bool:
     else:
         state["wrong_guesses"] += 1
         return False
+
+def is_won(state: dict) -> bool:
+    return state["guesses"] == state["display"]
 
 
 
