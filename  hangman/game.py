@@ -28,6 +28,11 @@ def apply_guess(state: dict, ch: str) -> bool:
 def is_won(state: dict) -> bool:
     return state["guesses"] == state["display"]
 
+def is_lost(state: dict) -> bool:
+    return state["wrong_guesses"] >= state["max_tries"]
+
+
+
 
 
 
