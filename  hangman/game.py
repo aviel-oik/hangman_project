@@ -15,6 +15,19 @@ def validate_guess(ch: str, guessed: set[str]) -> tuple[bool, str]:
 # guessed.add(ch)
         return True,"check..."
 
+def apply_guess(state: dict, ch: str) -> bool:
+    state["guesses"].append(ch)
+    if ch in state["secret"]:
+        for i in range(0, len(state["secret"])-1):
+            if state["secret"][i] == ch:
+                state["display"][i] = ch
+        return True
+    else:
+        state["wrong_guesses"] += 1
+        return False
+
+
+
 
 
 
